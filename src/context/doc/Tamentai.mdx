@@ -1,0 +1,47 @@
+import { Canvas, Controls, Meta, Title, Subtitle } from '@storybook/blocks'
+
+<Meta title="Providers/Tamentai" />
+
+# TamentaiProvider
+
+Esse provider fornece os recursos necessários para que uma série de componentes da biblioteca funcionem adequadamente, funcionando como um agregador de outros providers.
+
+Dentro dele estão os providers a seguir:
+
+<table>
+  <thead>
+    <tr><th>Provider</th></tr>
+  </thead>
+
+  <tbody>
+    <tr><td>BrowserRouter</td></tr>
+    <tr><td>FileUploadProvider</td></tr>
+    <tr><td>DialogProvider</td></tr>
+    <tr><td>ToastProvider</td></tr>
+    <tr><td>ThemeProvider</td></tr>
+    <tr><td>LayoutProvider</td></tr>
+  </tbody>
+</table>
+
+### Exemplo de uso
+Envolva toda sua aplicação com o provedor do Tamentai para ter acesso a todos os recursos.
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+
+import App from "./App";
+import { TamentaiProvider } from "@poliedro/tamentai";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+root.render(
+  <React.StrictMode>
+    <TamentaiProvider>
+      <App />
+    </TamentaiProvider>
+  </React.StrictMode>
+);
+```

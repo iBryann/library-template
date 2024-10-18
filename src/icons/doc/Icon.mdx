@@ -1,0 +1,16 @@
+import { Canvas, Controls, Meta, Title, Subtitle } from '@storybook/blocks';
+
+import { IconTable } from './IconTable';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+<Title />
+
+<Canvas of={IconStories.Default} />
+
+<Controls />
+
+<br /><hr /><br /><br />
+
+<IconTable />

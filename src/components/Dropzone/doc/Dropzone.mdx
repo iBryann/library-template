@@ -1,0 +1,141 @@
+import { Canvas, Controls, Meta, Title, Subtitle } from '@storybook/blocks';
+
+import * as DropzoneStories from './Dropzone.stories';
+
+<Meta of={DropzoneStories} />
+
+<Title />
+
+**IMPORTANTE**: O Dropzone tem como responsabilidade apenas selecionar e desolver arquivos por meio de uma função de upload. Toda a regra dentro dessa função é responsabilidade do desenvolvedor.
+
+### FileUploadFeedback
+
+O componente de Dropzone tem um componente irmão chamado FileUploadFeedback, que tem como função dar feedback do progresso de upload dos arquivos. Ele aparece no canto inferior direito (a exemplo do Google Drive) sempre que um arquivo é solto sobre ou selecionado pelo Dropzone.
+
+Esse é controlado dentro do Dropzone, logo não existe necessidade de atuação do desenvolvedor.
+
+### Funções auxiliares
+
+Para que consigamos dar o feedback adequado ao usuário, vamos precisar das duas funções auxiliares a seguir.
+
+**dispatchUploadProgress(id: string, loadedBytes: number)** - Informa ao FileUploadFeedback a quantidade de bytes que já subiram, viabilizando o calculo de progresso.
+
+**dispatchUploadError(id: string, error: Error)** - Repassa ao FileUploadFeedback erros que acontecem com cada arquivo, para que o usuário tenha transparência no processo.
+
+### Status do processo de upload
+
+<table>
+  <thead>
+    <tr>
+      <th>Chave</th>
+      <th>Valor</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>CANCELLED</td>
+      <td>cancelled</td>
+      <td>Upload cancelado</td>
+    </tr>
+    <tr>
+      <td>CONCLUDED</td>
+      <td>concluded</td>
+      <td>Operação concluída</td>
+    </tr>
+    <tr>
+      <td>FAILED</td>
+      <td>failed</td>
+      <td>Falha de validação/operação</td>
+    </tr>
+    <tr>
+      <td>FAILED_CONCLUDED</td>
+      <td>failed concluded</td>
+      <td>Uso interno do Tamentai</td>
+    </tr>
+    <tr>
+      <td>UPLOADING</td>
+      <td>uploading</td>
+      <td>Pronto para ou em upload</td>
+    </tr>
+  </tbody>
+</table>
+
+PS: para que o progresso de carregamento de upload funcione, informe o status inicial do arquico como UPLOADING.
+
+### Exemplo de uso
+
+O componente deve ser usado da forma abaixo. Repare que ele recebe como parâmetro uma função para upload e uma de validação, as quais devem seguir o contrato para funcionar corretamente.
+
+```tsx
+<Dropzone
+  acceptedTypes={['.jpg', '.png', '.webp']}
+  text="Arraste seu(s) arquivo(s) para cá ou clique para fazer o upload."
+  uploadingText="Aguarde enquanto seu(s) arquivo(s) estão carregando..."
+  variant="horizontal"
+  hideFiles={false}
+  callback={uploadFunction}
+  validation={validation}
+/>
+```
+
+**Validação - ** Na propriedade validation eu opcionalmente forneço uma função para validação.
+Essa função precisa retornar um objeto com a mensagem e o status resultante, o qual será usado para dar feedback adequado ao usuário na listagem de arquivos.
+
+Vamos supor que precisamos validação o tamanho de um arquivo. Para isso, podemos criar essa função a baixo e passar na prop validation.
+
+```tsx
+  function validation(file: File): TValidadeResult {
+    if (file.size < 200000) {
+      return {
+        status: STATUS.UPLOADING,
+        message: 'Imagem no tamanho certo.',
+      };
+    }
+
+    return {
+      status: STATUS.FAILED,
+      message: 'Imagem muito grande!',
+    };
+  }
+```
+
+**Operação - ** Nesse exemplo abaixo, estou criando uma função que faz o upload de arquivo no Azure Storage Blob. Mas o desenvolvedor pode fazer o que quiser com os arquivos, contanto que a função siga o contrato. Vale salientar que os parâmetros da função são preenchidos com os dados dos arquivos selecionados dentro do componente Dropzone.
+
+```ts
+function uploadFunction(
+  fileId: string,
+  file: File,
+  abortController: AbortController,
+) {
+  const blobServiceClient = new BlobServiceClient(URL + SAS_Token);
+  const containerClient = blobServiceClient.getContainerClient(CONTAINER_NAME);
+  const blobClient = containerClient.getBlobClient(file.name);
+  const blockBlobClient = blobClient.getBlockBlobClient();
+
+  blockBlobClient
+    .uploadBrowserData(file, {
+      blockSize: 100,
+      concurrency: 20,
+      onProgress: (progress: any) => {
+        // Repare que aqui estamos repassando o progresso do upload para o FileUploadFeedback
+        dispatchUploadProgress(fileId, progress.loadedBytes);
+      },
+      abortSignal: abortController.signal,
+    })
+    .then(() => {
+      // Códigos...
+    })
+    .catch((error: Error) => {
+      // E aqui estamos repassando os erros gerados pela função de upload
+      dispatchUploadError(fileId, error);
+    });
+}
+```
+
+<hr />
+
+<Canvas of={DropzoneStories.Default} />
+
+<Controls />

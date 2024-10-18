@@ -1,0 +1,12 @@
+/* eslint-disable max-len */
+import React from 'react';
+import { PathProps } from '../types';
+
+export const Grid = ({ color = '#191919' }: PathProps) => (
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M2 3.73913C2 2.77864 2.77864 2 3.73913 2H20.2609C21.2214 2 22 2.77864 22 3.73913V20.2609C22 21.2214 21.2214 22 20.2609 22H3.73913C2.77864 22 2 21.2214 2 20.2609V3.73913ZM3.73913 12.8697V20.2609H11.1304V12.8697H3.73913ZM11.1304 11.1306H3.73913V3.73913H11.1304V11.1306ZM12.8695 12.8697V20.2609H20.2609V12.8697H12.8695ZM20.2609 11.1306H12.8695V3.73913H20.2609V11.1306Z"
+    fill={color}
+  />
+);

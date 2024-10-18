@@ -1,0 +1,15 @@
+ol {
+  list-style: auto !important;
+}
+
+strong {
+  font-weight: bolder !important;
+}
+
+em {
+  font-style: italic !important;
+}
+
+.docblock-source {
+  margin: 1rem 0 2rem !important;
+}

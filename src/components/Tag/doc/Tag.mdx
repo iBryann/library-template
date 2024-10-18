@@ -1,0 +1,111 @@
+import { Canvas, Controls, Meta, Title, Subtitle } from '@storybook/blocks';
+
+import * as TagStories from './Tag.stories';
+import { Tag } from '..';
+
+<Meta of={TagStories} />
+
+<Title />
+
+Tags auxiliam no reconhecimento das informações e na filtragem da sua indicação na plataforma.
+
+### Variações
+
+<table>
+  <thead>
+    <tr>
+      <th>Variação</th>
+      <th>Grande</th>
+      <th>Médio</th>
+      <th>Pequeno</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>language</td>
+      <td><Tag variant="language" size="lg">Tag</Tag></td>
+      <td><Tag variant="language" size="md">Tag</Tag></td>
+      <td><Tag variant="language" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>math</td>
+      <td><Tag variant="math" size="lg">Tag</Tag></td>
+      <td><Tag variant="math" size="md">Tag</Tag></td>
+      <td><Tag variant="math" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>humanities</td>
+      <td><Tag variant="humanities" size="lg">Tag</Tag></td>
+      <td><Tag variant="humanities" size="md">Tag</Tag></td>
+      <td><Tag variant="humanities" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>science</td>
+      <td><Tag variant="science" size="lg">Tag</Tag></td>
+      <td><Tag variant="science" size="md">Tag</Tag></td>
+      <td><Tag variant="science" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>various 1</td>
+      <td><Tag variant="various 1" size="lg">Tag</Tag></td>
+      <td><Tag variant="various 1" size="md">Tag</Tag></td>
+      <td><Tag variant="various 1" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>html</td>
+      <td><Tag variant="html" size="lg">Tag</Tag></td>
+      <td><Tag variant="html" size="md">Tag</Tag></td>
+      <td><Tag variant="html" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>neutral</td>
+      <td><Tag variant="neutral" size="lg">Tag</Tag></td>
+      <td><Tag variant="neutral" size="md">Tag</Tag></td>
+      <td><Tag variant="neutral" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>various 2</td>
+      <td><Tag variant="various 2" size="lg">Tag</Tag></td>
+      <td><Tag variant="various 2" size="md">Tag</Tag></td>
+      <td><Tag variant="various 2" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>danger</td>
+      <td><Tag variant="danger" size="lg">Tag</Tag></td>
+      <td><Tag variant="danger" size="md">Tag</Tag></td>
+      <td><Tag variant="danger" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>success</td>
+      <td><Tag variant="success" size="lg">Tag</Tag></td>
+      <td><Tag variant="success" size="md">Tag</Tag></td>
+      <td><Tag variant="success" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>10%</td>
+      <td><Tag variant="10%" size="lg">Tag</Tag></td>
+      <td><Tag variant="10%" size="md">Tag</Tag></td>
+      <td><Tag variant="10%" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>20%</td>
+      <td><Tag variant="20%" size="lg">Tag</Tag></td>
+      <td><Tag variant="20%" size="md">Tag</Tag></td>
+      <td><Tag variant="20%" size="sm">Tag</Tag></td>
+    </tr>
+    <tr>
+      <td>30%</td>
+      <td><Tag variant="30%" size="lg">Tag</Tag></td>
+      <td><Tag variant="30%" size="md">Tag</Tag></td>
+      <td><Tag variant="30%" size="sm">Tag</Tag></td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<hr />
+
+<Canvas of={TagStories.Default} />
+
+<Controls />
