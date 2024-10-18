@@ -34,11 +34,8 @@ export default [
     external: [
       "react",
       "react-dom",
-      "@radix-ui/react-toast",
-      "axios",
       "class-variance-authority",
       "clsx",
-      "react-router-dom",
       "styled-components",
       "tailwind-merge"
     ],
