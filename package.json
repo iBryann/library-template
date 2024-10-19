@@ -1,17 +1,17 @@
 {
   "name": "library-template",
   "version": "1.0.0",
+  "author": "",
   "description": "",
+  "license": "ISC",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "rollup": "rollup -c --bundleConfigAsCjs",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build": "rollup -c --bundleConfigAsCjs",
+    "sb": "storybook dev -p 6006",
+    "sb:build": "storybook build"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
@@ -46,9 +46,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "styled-components": "^6.1.13",
-    "tailwind-merge": "^2.5.4"
+    "styled-components": "^6.1.13"
   }
 }

@@ -41,7 +41,7 @@ export const Dropzone = forwardRef<DropzoneInputRef, IDropzoneProps>(
   ) => {
     const inputId = useId();
     const { files, upload } = useContext(FileUploadContext);
-    const areFilesBeingUploaded = !!files.find((file) => {
+    const areFilesBeingUploaded = !!files?.find((file) => {
       return file.status === "uploading";
     });
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +66,7 @@ export const Dropzone = forwardRef<DropzoneInputRef, IDropzoneProps>(
       );
 
       if (files.length > validFiles.length) {
-        const invalidFile = files.find(
+        const invalidFile = files?.find(
           (file) => !validFileExt(file, acceptedTypes)
         );
 
