@@ -1,3 +1,4 @@
+import React from "react";
 import { HTMLAttributes, ReactHTML, ReactNode } from "react";
 
 export type TextVariants =
