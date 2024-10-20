@@ -14,7 +14,9 @@
     "dev": "vite --open",
     "build": "rollup -c --bundleConfigAsCjs",
     "sb": "storybook dev -p 6006",
-    "sb:build": "storybook build"
+    "sb:build": "storybook build",
+    "prettier:check": "prettier . --check",
+    "prettier:format": "prettier . --write"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
@@ -39,6 +41,7 @@
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
     "identity-obj-proxy": "^3.0.0",
+    "prettier": "3.3.3",
     "rollup": "^4.9.1",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
